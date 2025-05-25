@@ -10,9 +10,9 @@
 //! then wrap this again with a converter,
 //! and finally read and print all the values as floats.
 //! ```
-//! use audioadapter::direct::InterleavedSlice;
 //! use audioadapter::Adapter;
-//! use audioadapter::adapter_to_float::ConvertNumbers;
+//! use audioadapter_kit::adapter_to_float::ConvertNumbers;
+//! use audioadapter_kit::direct::InterleavedSlice;
 //!
 //! // Make a vector with some dummy data.
 //! let data: Vec<i16> = vec![1, 2, 3, 4, 5, 6];
@@ -37,10 +37,10 @@
 
 use num_traits::Float;
 
-use crate::sample::BytesSample;
-use crate::sample::RawSample;
-use crate::sample::I16LE;
-use crate::{Adapter, AdapterMut};
+use audioadapter::sample::BytesSample;
+use audioadapter::sample::RawSample;
+use audioadapter::sample::I16LE;
+use audioadapter::{Adapter, AdapterMut};
 
 macro_rules! implement_wrapped_size_getters {
     () => {
@@ -246,7 +246,7 @@ where
 mod tests {
     use super::*;
     use crate::direct::InterleavedSlice;
-    use crate::Adapter;
+    use audioadapter::Adapter;
 
     #[test]
     fn read_i16_bytes() {

@@ -106,7 +106,7 @@ The [number_to_float] module is desgined to help with this.
 Example, wrap a buffer of bytes containing interleaved raw samples in 24-bit integer format,
 while converting them to f32:
 ```rust
-use audioadapter::number_to_float::InterleavedNumbers;
+use audioadapter_kit::number_to_float::InterleavedNumbers;
 use audioadapter::Adapter;
 use audioadapter::sample::I24LE;
 
@@ -158,22 +158,6 @@ let data: Vec<u8> = vec![1, 2, 3, 4];
 let mut slice = &data[..];
 // read the first value as 16 bit integer, convert to f32.
 let float_value = slice.read_converted::<I16LE, f32>();
-```
-
-## Compatibility with the [audio](https://crates.io/crates/audio) crate
-In addition to the provided wrappers, the [Adapter], [AdapterMut] traits are implemented for
-buffers implementing the [audio_core::Buf], [audio_core::BufMut] and [audio_core::ExactSizeBuf]
-traits from the [audio](https://crates.io/crates/audio) crate.
-This is enabled via the `audio` Cargo feature, which is enabled by default.
-
-Example: Create a buffer and access it using [Adapter] methods.
-```
-use audioadapter::Adapter;
-use audio;
-
-let buf: audio::buf::Interleaved<i32> = audio::buf::Interleaved::with_topology(2, 4);
-# #[cfg(feature = "audio")]
-buf.read_sample(0,0);
 ```
 
 

@@ -10,8 +10,8 @@
 //! Wrap a `Vec<i32>` as an interleaved buffer
 //! and print all the values.
 //! ```
-//! use audioadapter::owned::InterleavedOwned;
 //! use audioadapter::Adapter;
+//! use audioadapter_kit::owned::InterleavedOwned;
 //!
 //! // make a vector with some dummy data.
 //! // 2 channels * 3 frames => 6 samples
@@ -40,7 +40,7 @@ use crate::SizeError;
 
 use crate::slicetools::copy_within_slice;
 use crate::{check_slice_length, implement_size_getters};
-use crate::{Adapter, AdapterMut};
+use audioadapter::{Adapter, AdapterMut};
 
 //
 // =========================== InterleavedOwned ===========================

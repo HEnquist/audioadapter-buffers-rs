@@ -12,21 +12,6 @@ pub mod owned;
 
 /// Dummy Adapter
 pub mod dummy;
-/// The traits for accessing samples in buffers.
-mod traits;
-
-/// Type conversion of samples values.
-pub mod sample;
-
-/// Extensions to the standard [std::io::Read] and [std::io::Write] traits.
-#[cfg(feature = "std")]
-pub mod readwrite;
-
-/// Calculate statistics for adapters with numerical sample types
-pub mod stats;
-
-/// Read-only iterators
-mod iterators;
 
 mod slicetools;
 
@@ -35,12 +20,7 @@ use std::error::Error;
 #[cfg(feature = "std")]
 use std::fmt;
 
-pub use traits::{Adapter, AdapterMut};
-
-pub use iterators::AdapterIterators;
-
-#[cfg(feature = "audio")]
-pub mod audio;
+pub use audioadapter::AdapterIterators;
 
 pub mod adapter_to_float;
 
@@ -139,7 +119,7 @@ pub(crate) use check_slice_length;
 
 #[cfg(test)]
 mod tests {
-    use crate::AdapterMut;
+    use audioadapter::AdapterMut;
 
     fn prepare_test_data(buffer: &mut dyn AdapterMut<u32>) {
         for channel in 0..buffer.channels() {
