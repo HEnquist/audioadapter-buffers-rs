@@ -1,6 +1,6 @@
 //! # Dummy adapter
 //!
-//! A struct that implement the [Adapter] and [AdapterMut] traits.
+//! A struct that implement the [audioadapter::Adapter] and [audioadapter::AdapterMut] traits.
 //! It returns dummy values on read, and discards data on write.
 
 use crate::implement_size_getters;
