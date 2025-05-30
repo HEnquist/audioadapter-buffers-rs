@@ -1,5 +1,5 @@
 [package]
-name = "audioadapter-kit"
+name = "audioadapter-buffers"
 version = "1.0.0"
 edition = "2021"
 rust-version = "1.74"
@@ -18,6 +18,7 @@ std = []
 [dependencies]
 num-traits = "0.2.15"
 audioadapter = { version = "1.0.0", path = "../audioadapter-rs" }
+audioadapter-sample = { version = "1.0.0", path = "../audioadapter-sample-rs" }
 
 
 [dev-dependencies]

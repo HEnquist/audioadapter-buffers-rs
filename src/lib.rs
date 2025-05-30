@@ -20,8 +20,6 @@ use std::error::Error;
 #[cfg(feature = "std")]
 use std::fmt;
 
-pub use audioadapter::AdapterIterators;
-
 pub mod adapter_to_float;
 
 /// Error returned when the wrapped data structure has the wrong dimensions,

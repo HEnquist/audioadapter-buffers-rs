@@ -1,5 +1,6 @@
-use audioadapter::sample::*;
+use audioadapter_sample::sample::*;
 use audioadapter::*;
+use audioadapter_buffers::{direct, number_to_float};
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
 
 // plain nested loops with unsafe read calls

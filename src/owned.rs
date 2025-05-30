@@ -11,7 +11,7 @@
 //! and print all the values.
 //! ```
 //! use audioadapter::Adapter;
-//! use audioadapter_kit::owned::InterleavedOwned;
+//! use audioadapter_buffers::owned::InterleavedOwned;
 //!
 //! // make a vector with some dummy data.
 //! // 2 channels * 3 frames => 6 samples

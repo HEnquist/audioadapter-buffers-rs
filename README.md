@@ -106,9 +106,9 @@ The [number_to_float] module is desgined to help with this.
 Example, wrap a buffer of bytes containing interleaved raw samples in 24-bit integer format,
 while converting them to f32:
 ```rust
-use audioadapter_kit::number_to_float::InterleavedNumbers;
+use audioadapter_buffers::number_to_float::InterleavedNumbers;
 use audioadapter::Adapter;
-use audioadapter::sample::I24LE;
+use audioadapter_sample::sample::I24LE;
 
 // make a vector with some dummy data.
 // 2 channels * 3 frames * 3 bytes per sample => 18 bytes
@@ -149,8 +149,8 @@ with on-the-fly conversion between bytes and the numerical values.
 
 Example
 ```rust
-use audioadapter::sample::I16LE;
-use audioadapter::readwrite::ReadSamples;
+use audioadapter_sample::sample::I16LE;
+use audioadapter_sample::readwrite::ReadSamples;
 
 // make a vector with some dummy data.
 let data: Vec<u8> = vec![1, 2, 3, 4];

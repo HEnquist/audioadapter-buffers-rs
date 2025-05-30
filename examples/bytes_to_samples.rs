@@ -6,7 +6,7 @@
 // and converted to i16 with i16::from_le_bytes().
 
 use audioadapter::Adapter;
-use audioadapter_kit::direct::InterleavedSlice;
+use audioadapter_buffers::direct::InterleavedSlice;
 
 fn main() {
     let channels = 2;

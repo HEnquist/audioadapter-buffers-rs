@@ -12,7 +12,7 @@
 //! Wrap a Vec of 16-bit integer samples as an interleaved buffer
 //! and print all the values.
 //! ```
-//! use audioadapter_kit::number_to_float::InterleavedNumbers;
+//! use audioadapter_buffers::number_to_float::InterleavedNumbers;
 //! use audioadapter::Adapter;
 //!
 //! // make a vector with some data.
@@ -38,9 +38,9 @@
 //! Wrap a Vec of bytes as an interleaved buffer of 16-bit little endian
 //! integer samples and print all the values.
 //! ```
-//! use audioadapter_kit::number_to_float::InterleavedNumbers;
+//! use audioadapter_buffers::number_to_float::InterleavedNumbers;
 //! use audioadapter::Adapter;
-//! use audioadapter::sample::I16LE;
+//! use audioadapter_sample::sample::I16LE;
 //!
 //! // make a vector with some dummy data.
 //! // 2 channels * 3 frames * 2 bytes per sample => 12 bytes
@@ -66,8 +66,8 @@ use num_traits::Float;
 use crate::slicetools::copy_within_slice;
 use crate::SizeError;
 use crate::{check_slice_length, implement_size_getters};
-use audioadapter::sample::RawSample;
 use audioadapter::{Adapter, AdapterMut};
+use audioadapter_sample::sample::RawSample;
 
 /// A macro for creating a view of an immutable slice of bytes
 /// as a different type.
@@ -398,7 +398,7 @@ impl_traits_newtype!(SequentialNumbers);
 #[cfg(test)]
 mod tests {
     use super::*;
-    use audioadapter::sample::{I16LE, I24LE};
+    use audioadapter_sample::sample::{I16LE, I24LE};
 
     #[test]
     fn read_i32() {
