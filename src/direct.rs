@@ -16,8 +16,8 @@
 //! Wrap a Vec of i32 as an interleaved buffer
 //! and print all the values.
 //! ```
-//! use audioadapter::direct::InterleavedSlice;
 //! use audioadapter::Adapter;
+//! use audioadapter_buffers::direct::InterleavedSlice;
 //!
 //! // make a vector with some dummy data.
 //! // 2 channels * 3 frames => 6 samples
@@ -43,7 +43,7 @@ use crate::SizeError;
 
 use crate::slicetools::copy_within_slice;
 use crate::{check_slice_length, implement_size_getters};
-use crate::{Adapter, AdapterMut};
+use audioadapter::{Adapter, AdapterMut};
 
 #[cfg(feature = "std")]
 macro_rules! check_slice_and_vec_length {
@@ -1067,7 +1067,7 @@ mod tests {
     #[cfg(feature = "std")]
     #[test]
     fn sparse_sequential() {
-        use crate::stats::AdapterStats;
+        use audioadapter::stats::AdapterStats;
 
         let mut data = vec![vec![1, 2, 3], Vec::new()];
         let mask = vec![true, false];

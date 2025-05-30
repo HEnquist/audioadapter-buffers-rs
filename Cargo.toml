@@ -1,29 +1,28 @@
 [package]
-name = "audioadapter"
-version = "0.5.0"
+name = "audioadapter-buffers"
+version = "1.0.0"
 edition = "2021"
 rust-version = "1.74"
 authors = ["HEnquist <henrik.enquist@gmail.com>"]
-description = "A library for making it easier to work with buffers of audio data"
+description = "A selection of wrappers and buffers for audio data"
 license = "MIT"
-repository = "https://github.com/HEnquist/audioadapter-rs"
+repository = "https://github.com/HEnquist/audioadapter-buffers-rs"
 keywords = ["audio", "buffer", "dsp", "sample", "pcm"]
 categories = ["multimedia::audio"]
 readme = "README.md"
 
 [features]
-default = ["std", "audio"]
+default = ["std"]
 std = []
-audio = ["audio-core"]
 
 [dependencies]
 num-traits = "0.2.15"
-audio-core = { version = "0.2.0", optional = true }
+audioadapter = { version = "1.0.0", path = "../audioadapter-rs" }
+audioadapter-sample = { version = "1.0.0", path = "../audioadapter-sample-rs" }
 
 
 [dev-dependencies]
 criterion = "0.5"
-audio = "0.2.0"
 
 [[bench]]
 name = "iteration"
