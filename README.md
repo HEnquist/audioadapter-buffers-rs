@@ -88,4 +88,10 @@ stored as 3 bytes in little-endian order without padding.
 24-bit samples are also commonly stored with a padding byte, so that each sample takes up four bytes.
 This is handled by selecting `I24LE<4>` as the format.
 
+## Use without the standard library
+This crate can be used in `no_std` environments if the `std` Cargo feature is disabled.
+This feature is enabled by default.
+Disabling it also disables all functionality that depends on the standard library,
+such as the buffers in the [owned] module since they are based on [std::vec::Vec].
+
 ## License: MIT
