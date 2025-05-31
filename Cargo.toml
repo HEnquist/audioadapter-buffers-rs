@@ -13,16 +13,16 @@ readme = "README.md"
 
 [features]
 default = ["std"]
-std = []
+std = ["audioadapter-sample/std"]
 
 [dependencies]
 num-traits = "0.2.15"
 audioadapter = { version = "1.0.0", path = "../audioadapter-rs" }
-audioadapter-sample = { version = "1.0.0", path = "../audioadapter-sample-rs" }
+audioadapter-sample = { version = "1.0.0", path = "../audioadapter-sample-rs", default-features = false, features = ["audio"] }
 
 
 [dev-dependencies]
-criterion = "0.5"
+criterion = "0.6"
 
 [[bench]]
 name = "iteration"

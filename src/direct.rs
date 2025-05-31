@@ -1107,6 +1107,7 @@ mod tests {
         check_copy_within(&mut adapter);
     }
 
+    #[cfg(feature = "std")]
     #[test]
     fn copy_within_interleaved_vecs() {
         let mut data = vec![vec![0; 2]; 10];
@@ -1114,6 +1115,7 @@ mod tests {
         check_copy_within(&mut adapter);
     }
 
+    #[cfg(feature = "std")]
     #[test]
     fn copy_within_sequential_vecs() {
         let mut data = vec![vec![0; 10]; 2];
