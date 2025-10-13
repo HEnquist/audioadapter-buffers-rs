@@ -172,7 +172,7 @@ where
 
     implement_size_getters!();
 
-    fn write_from_channel_to_slice(&self, channel: usize, skip: usize, slice: &mut [T]) -> usize {
+    fn copy_from_channel_to_slice(&self, channel: usize, skip: usize, slice: &mut [T]) -> usize {
         if channel >= self.channels || skip >= self.frames {
             return 0;
         }
@@ -197,7 +197,7 @@ where
 
     implement_size_getters!();
 
-    fn write_from_channel_to_slice(&self, channel: usize, skip: usize, slice: &mut [T]) -> usize {
+    fn copy_from_channel_to_slice(&self, channel: usize, skip: usize, slice: &mut [T]) -> usize {
         if channel >= self.channels || skip >= self.frames {
             return 0;
         }
@@ -221,7 +221,7 @@ where
         false
     }
 
-    fn write_from_slice_to_channel(
+    fn copy_from_slice_to_channel(
         &mut self,
         channel: usize,
         skip: usize,
@@ -336,7 +336,7 @@ where
 
     implement_size_getters!();
 
-    fn write_from_channel_to_slice(&self, channel: usize, skip: usize, slice: &mut [T]) -> usize {
+    fn copy_from_channel_to_slice(&self, channel: usize, skip: usize, slice: &mut [T]) -> usize {
         if channel >= self.channels || !self.mask[channel] || skip >= self.frames {
             return 0;
         }
@@ -364,7 +364,7 @@ where
 
     implement_size_getters!();
 
-    fn write_from_channel_to_slice(&self, channel: usize, skip: usize, slice: &mut [T]) -> usize {
+    fn copy_from_channel_to_slice(&self, channel: usize, skip: usize, slice: &mut [T]) -> usize {
         if channel >= self.channels || !self.mask[channel] || skip >= self.frames {
             return 0;
         }
@@ -390,7 +390,7 @@ where
         false
     }
 
-    fn write_from_slice_to_channel(
+    fn copy_from_slice_to_channel(
         &mut self,
         channel: usize,
         skip: usize,
@@ -487,7 +487,7 @@ where
 
     implement_size_getters!();
 
-    fn write_from_frame_to_slice(&self, frame: usize, skip: usize, slice: &mut [T]) -> usize {
+    fn copy_from_frame_to_slice(&self, frame: usize, skip: usize, slice: &mut [T]) -> usize {
         if frame >= self.frames || skip >= self.channels {
             return 0;
         }
@@ -513,7 +513,7 @@ where
 
     implement_size_getters!();
 
-    fn write_from_frame_to_slice(&self, frame: usize, skip: usize, slice: &mut [T]) -> usize {
+    fn copy_from_frame_to_slice(&self, frame: usize, skip: usize, slice: &mut [T]) -> usize {
         if frame >= self.frames || skip >= self.channels {
             return 0;
         }
@@ -538,7 +538,7 @@ where
         false
     }
 
-    fn write_from_slice_to_frame(
+    fn copy_from_slice_to_frame(
         &mut self,
         frame: usize,
         skip: usize,
@@ -622,7 +622,7 @@ where
 
     implement_size_getters!();
 
-    fn write_from_frame_to_slice(&self, frame: usize, skip: usize, slice: &mut [T]) -> usize {
+    fn copy_from_frame_to_slice(&self, frame: usize, skip: usize, slice: &mut [T]) -> usize {
         if frame >= self.frames || skip >= self.channels {
             return 0;
         }
@@ -649,7 +649,7 @@ where
 
     implement_size_getters!();
 
-    fn write_from_frame_to_slice(&self, frame: usize, skip: usize, slice: &mut [T]) -> usize {
+    fn copy_from_frame_to_slice(&self, frame: usize, skip: usize, slice: &mut [T]) -> usize {
         if frame >= self.frames || skip >= self.channels {
             return 0;
         }
@@ -675,7 +675,7 @@ where
         false
     }
 
-    fn write_from_slice_to_frame(
+    fn copy_from_slice_to_frame(
         &mut self,
         frame: usize,
         skip: usize,
@@ -776,7 +776,7 @@ where
 
     implement_size_getters!();
 
-    fn write_from_channel_to_slice(&self, channel: usize, skip: usize, slice: &mut [T]) -> usize {
+    fn copy_from_channel_to_slice(&self, channel: usize, skip: usize, slice: &mut [T]) -> usize {
         if channel >= self.channels || skip >= self.frames {
             return 0;
         }
@@ -804,7 +804,7 @@ where
 
     implement_size_getters!();
 
-    fn write_from_channel_to_slice(&self, channel: usize, skip: usize, slice: &mut [T]) -> usize {
+    fn copy_from_channel_to_slice(&self, channel: usize, skip: usize, slice: &mut [T]) -> usize {
         if channel >= self.channels || skip >= self.frames {
             return 0;
         }
@@ -830,7 +830,7 @@ where
         false
     }
 
-    fn write_from_slice_to_channel(
+    fn copy_from_slice_to_channel(
         &mut self,
         channel: usize,
         skip: usize,
@@ -897,8 +897,8 @@ mod tests {
         insert_data(buffer);
         let mut other1 = [0; 2];
         let mut other2 = [0; 4];
-        buffer.write_from_channel_to_slice(0, 1, &mut other1);
-        buffer.write_from_channel_to_slice(1, 0, &mut other2);
+        buffer.copy_from_channel_to_slice(0, 1, &mut other1);
+        buffer.copy_from_channel_to_slice(1, 0, &mut other2);
         assert_eq!(other1[0], 2);
         assert_eq!(other1[1], 3);
         assert_eq!(other2[0], 4);
@@ -911,8 +911,8 @@ mod tests {
         insert_data(buffer);
         let mut other1 = [0; 1];
         let mut other2 = [0; 3];
-        buffer.write_from_frame_to_slice(0, 1, &mut other1);
-        buffer.write_from_frame_to_slice(1, 0, &mut other2);
+        buffer.copy_from_frame_to_slice(0, 1, &mut other1);
+        buffer.copy_from_frame_to_slice(1, 0, &mut other2);
         assert_eq!(other1[0], 4);
         assert_eq!(other2[0], 2);
         assert_eq!(other2[1], 5);
@@ -923,8 +923,8 @@ mod tests {
         insert_data(buffer);
         let other1 = [8, 9];
         let other2 = [10, 11, 12, 13];
-        buffer.write_from_slice_to_channel(0, 1, &other1);
-        buffer.write_from_slice_to_channel(1, 0, &other2);
+        buffer.copy_from_slice_to_channel(0, 1, &other1);
+        buffer.copy_from_slice_to_channel(1, 0, &other2);
         assert_eq!(buffer.read_sample(0, 0).unwrap(), 1);
         assert_eq!(buffer.read_sample(0, 1).unwrap(), 8);
         assert_eq!(buffer.read_sample(0, 2).unwrap(), 9);
@@ -937,8 +937,8 @@ mod tests {
         insert_data(buffer);
         let other1 = [8];
         let other2 = [10, 11, 12];
-        buffer.write_from_slice_to_frame(0, 0, &other1);
-        buffer.write_from_slice_to_frame(1, 0, &other2);
+        buffer.copy_from_slice_to_frame(0, 0, &other1);
+        buffer.copy_from_slice_to_frame(1, 0, &other2);
         assert_eq!(buffer.read_sample(0, 0).unwrap(), 8);
         assert_eq!(buffer.read_sample(1, 0).unwrap(), 4);
         assert_eq!(buffer.read_sample(0, 1).unwrap(), 10);
@@ -1024,9 +1024,9 @@ mod tests {
         let mut data = [0.0; 6];
         let mut buffer = SequentialSlice::new_mut(&mut data, 2, 3).unwrap();
         // copy second and third element of second channel of other to first and second element of first channel
-        let res1 = buffer.write_from_other_to_channel(&other, 1, 0, 1, 0, 2);
+        let res1 = buffer.copy_from_other_to_channel(&other, 1, 0, 1, 0, 2);
         // copy first and second element of first channel of other to second and third element of second channel
-        let res2 = buffer.write_from_other_to_channel(&other, 0, 1, 0, 1, 2);
+        let res2 = buffer.copy_from_other_to_channel(&other, 0, 1, 0, 1, 2);
         assert_eq!(res1, Some(0));
         assert_eq!(res2, Some(0));
         assert_eq!(buffer.read_sample(0, 0).unwrap(), 5.0);

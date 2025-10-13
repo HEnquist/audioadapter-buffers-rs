@@ -493,8 +493,8 @@ mod tests {
         let mut data = [0; 6];
         let mut buffer = InterleavedNumbers::<_, f32>::new_mut(&mut data, 2, 3).unwrap();
 
-        buffer.write_from_slice_to_channel(0, 0, &values_left);
-        buffer.write_from_slice_to_channel(1, 0, &values_right);
+        buffer.copy_from_slice_to_channel(0, 0, &values_left);
+        buffer.copy_from_slice_to_channel(1, 0, &values_right);
         assert_eq!(data, expected_data);
     }
 
@@ -507,8 +507,8 @@ mod tests {
         let mut values_right = [0.0; 3];
         let buffer: InterleavedNumbers<_, f32> = InterleavedNumbers::new(&data, 2, 3).unwrap();
 
-        buffer.write_from_channel_to_slice(0, 0, &mut values_left);
-        buffer.write_from_channel_to_slice(1, 0, &mut values_right);
+        buffer.copy_from_channel_to_slice(0, 0, &mut values_left);
+        buffer.copy_from_channel_to_slice(1, 0, &mut values_right);
         assert_eq!(values_left, expected_left);
         assert_eq!(values_right, expected_right);
     }
